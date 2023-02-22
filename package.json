@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build && NODE_ENV=production node ./dist/index.js",
     "dev": "nodemon --exec NODE_ENV=development ts-node ./src/index.ts",
-    "build": "tsc && cp -r ./dist ./src"
+    "build": "tsc && cp -r /dist /src/dist"
   },
   "repository": {
     "type": "git",
