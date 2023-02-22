@@ -34,7 +34,7 @@ wss.on('connection', (ws: WebSocket) => {
 });
 
 //start our server
-server.listen( 3000, () => {
+server.listen( 8080, () => {
     console.log(`Server started on port ${server.address()?.toString} :)`);
 });
 // 動態選擇環境變數的檔案
