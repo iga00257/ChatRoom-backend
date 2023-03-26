@@ -14,20 +14,24 @@ wss.on('connection', (ws: WebSocket) => {
     ws.send(
         JSON.stringify({text:"新用戶加入聊天室"})
         );
-        console.log("1")
-
     //connection is up, let's add a simple simple event
     ws.on('message', (message: string) => {
         const {username,text} = JSON.parse(message)
 
         //log the received message and send it back to the client
-        console.log('received: %s', text);
         let clients = wss.clients
 	    // Use loop for sending messages to each client
 	    clients.forEach(client => {
-	        client.send(JSON.stringify({text}))
+	        client.send(JSON.stringify({text,username}))
 	    })
     });
+    
+    ws.on('close',(e:any)=>{
+        let clients = wss.clients
+        clients.forEach(client => {
+	        client.send(JSON.stringify({text:"a user leave",username:""}))
+	    })
+    })
 
     //send immediatly a feedback to the incoming connection    
     // ws.send({text:'Hi there, I am a WebSocket server'});/
